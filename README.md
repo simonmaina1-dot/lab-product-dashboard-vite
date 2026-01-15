@@ -1,120 +1,115 @@
-# Lab: Product Dashboard Manager
+# Product Dashboard
 
-## Introduction
+A dynamic product dashboard built with React, featuring product filtering, conditional styling, and remove functionality with full test coverage.
 
-Your company is developing an **e-commerce platform**, and you have been assigned to create a **Product Dashboard**. This dashboard will dynamically display a list of products, allow users to filter products by availability, and apply **conditional rendering** to display different UI states.
+## Features
 
-Your goal is to structure the React components, apply styles using **CSS Modules and Material UI**, and ensure that the dashboard passes all pre-written automated tests using **Jest and React Testing Library**.
+- Display a list of products with name, price, and availability status
+- Filter products by: All, In Stock, or Out of Stock
+- Conditional styling for out-of-stock products
+- Remove products from the dashboard
+- Fully tested with Jest and React Testing Library
 
----
+## Project Structure
 
-## **Challenge**
-1. Update Existing Element of the title
-2. Create New Elements for each product
+```
+lab-product-dashboard/
+├── src/
+│   ├── __tests__/
+│   │   └── indexTest.test.jsx    # Test suite
+│   ├── components/
+│   │   ├── ProductCard.jsx       # Individual product card component
+│   │   └── ProductList.jsx       # List of product cards
+│   ├── styles/
+│   │   └── ProductCard.module.css # CSS Modules styling
+│   ├── App.jsx                   # Main app component with state
+│   ├── App.css                   # App styles
+│   ├── main.jsx                  # Entry point
+│   └── index.css                 # Global styles
+├── db.json                       # JSON database (for future API)
+├── package.json                  # Dependencies and scripts
+├── vite.config.js                # Vite configuration
+└── jest.config.js                # Jest configuration
+```
 
-## **Bonus Challenge**
-3. Delete Element
+## Setup Instructions
 
----
-
-## **Instructions**
-
-### **1️⃣ Fork and Clone the Repository**  
-1. Go to the provided **GitHub repository link**.
-2. **Fork** the repository to your GitHub account.
-3. **Clone** the forked repository to your local machine:
-   ```sh
-   git clone <your-forked-repository-url>
-   cd product-dashboard
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repository-url>
+   cd lab-product-dashboard
    ```
-4. Open the project in **VSCode**.
-5. Run the following command to install all necessary dependencies:
-   ```sh
+
+2. **Install dependencies:**
+   ```bash
    npm install
    ```
 
-### **2️⃣ Update Existing Element**
-- Modify the existing **header** element to display the **Product Dashboard title**.
-- Select the **DOM element** with the ID of `header`.
-- Store it in a variable called `dashboardTitle`.
-- Change the **textContent** of `dashboardTitle` to **"Product Dashboard"**.
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
 
-### **3️⃣ Create New Elements for Each Product**
-- Loop through every product in the dataset.
-- Each product is stored in an **array**.
-- Inside the loop, create and configure the following **new elements**:
-  - **`div` element (`productContainer`)** to hold product details.
-  - **`h3` element (`productTitle`)** to display the product name.
-  - **`p` element (`productPrice`)** to show the product's price.
-  - **`p` element (`productAvailability`)** to indicate if the product is **in stock or out of stock**.
-  - **`img` element (`productImage`)** to display the product image.
+4. **Open your browser** and navigate to the URL shown in the terminal (typically `http://localhost:5173`)
 
-### **4️⃣ Append Elements to the DOM**
-- Select the element with the ID `product-list` and store it in a variable called `productList`.
-- Append `productTitle`, `productPrice`, `productAvailability`, and `productImage` to `productContainer`.
-- Append `productContainer` to `productList`.
+## Running the Tests
 
-### **5️⃣ Implement Conditional Rendering**
-- Products that are **out of stock** should be **styled differently**.
-- Use **CSS Modules** to apply a different background color to out-of-stock items.
+This project includes comprehensive tests using Jest and React Testing Library.
 
----
-
-## **Bonus Challenge: Delete Element**
-- Implement a feature that allows users to **remove a product** from the dashboard.
-- Add a **"Remove" button** next to each product.
-- When clicked, the button should **delete the product element** from the page.
-
----
-
-## **BONUS: Remove Elements from the DOM**
-
-We know how to add elements and change their attributes. What if we want to
-remove an element from a page?
-
-### `removeChild()`
-
-We use `removeChild()`, as you might guess, to remove a particular child of an
-element:
-
-```js
-someElement.removeChild(someChildElement);
+### Run tests once:
+```bash
+npm test
 ```
 
-Let's take a look at a more complex example:
-
-```js
-const productList = document.getElementById("product-list");
-const firstProduct = productList.querySelector("div:first-child");
-productList.removeChild(firstProduct);
+### Run tests in watch mode (for development):
+```bash
+npm run test:watch
 ```
 
-Here you can see the power of `querySelector()`: we can use it to find the
-first product in the list. We then pass that element as the argument to our
-`removeChild` method, which removes it from the dashboard.
+### Test Coverage
 
-What if we want to remove the entire product list?
+The test suite includes:
+- ✅ Renders product dashboard title
+- ✅ Displays all products initially
+- ✅ Applies conditional styling for out-of-stock products
+- ✅ Removes product from the dashboard when "Remove" button is clicked
 
-### `element.remove()`
+## Git Commands
 
-We can just call `remove()` on the element itself:
-
-```js
-productList.remove();
+### Commit your changes:
+```bash
+git add .
+git commit -m "Your commit message"
 ```
 
-And it's gone!
+### Push to GitHub:
+```bash
+git remote add origin <your-repository-url>
+git push origin main
+```
 
----
+## Technologies Used
 
-## **Resources**
+- **React** - UI framework
+- **Vite** - Build tool and dev server
+- **Jest** - Testing framework
+- **React Testing Library** - Component testing
+- **CSS Modules** - Component-scoped styling
+- **Material UI** - UI components
 
-- [React Documentation](https://react.dev)
-- [CSS Modules Documentation](https://github.com/css-modules/css-modules)
-- [Material UI Documentation](https://mui.com)
-- [Jest Testing Framework](https://jestjs.io/)
-- [React Testing Library](https://testing-library.com)
-- [document.createElement()](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
-- [append()](https://developer.mozilla.org/en-US/docs/Web/API/Element/append)
-- [removeChild()](https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild)
-- [element.remove()](https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove)
+## Additional Scripts
+
+```bash
+# Run JSON server (mock API)
+npm run server
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Run linter
+npm run lint
+```
+
